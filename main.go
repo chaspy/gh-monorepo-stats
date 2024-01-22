@@ -76,6 +76,7 @@ func detectLanguage(dirName string) (string, string) {
     return "", ""
 }
 
+// nolint:gocyclo
 func countLinesOfCode(dirName, language string, ignorePaths []string) int {
     var extension string
     switch language {

@@ -1,7 +1,7 @@
 linters:
   disable-all: true
   enable:
-    # defailt
+    # default
     - errcheck
     - gosimple
     - govet

@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -21,7 +20,7 @@ func main() {
 func run() error {
     ignorePaths := getIgnorePaths()
 
-    dirs, err := ioutil.ReadDir(".")
+    dirs, err := os.ReadDir(".")
     if err != nil {
         fmt.Println(err)
         return fmt.Errorf("failed to read directory")
@@ -52,7 +51,7 @@ func getIgnorePaths() []string {
 
 
 func detectLanguage(dirName string) (string, string) {
-	files, err := ioutil.ReadDir(dirName)
+	files, err := os.ReadDir(dirName)
 	if err != nil {
 		return "", ""
 	}

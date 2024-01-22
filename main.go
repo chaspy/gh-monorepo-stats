@@ -24,7 +24,7 @@ func run() error {
     dirs, err := ioutil.ReadDir(".")
     if err != nil {
         fmt.Println(err)
-        return nil
+        return fmt.Errorf("failed to read directory")
     }
 
     for _, d := range dirs {

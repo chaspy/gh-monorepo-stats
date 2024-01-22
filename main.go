@@ -19,6 +19,8 @@ func main() {
 }
 
 func run() error {
+    ignorePaths := getIgnorePaths()
+
     dirs, err := ioutil.ReadDir(".")
     if err != nil {
         fmt.Println(err)
@@ -30,16 +32,24 @@ func run() error {
             dirName := d.Name()
             language, packageFile := detectLanguage(dirName)
             if language != "" {
-                loc := countLinesOfCode(dirName, language)
+                loc := countLinesOfCode(dirName, language, ignorePaths)
                 fmt.Printf("%s, %s, %s, %d\n", dirName, packageFile, language, loc)
             } else {
                 fmt.Println(dirName)
             }
         }
     }
-
 	return nil
 }
+
+func getIgnorePaths() []string {
+    ignorePathsEnv := os.Getenv("IGNORE_PATH")
+    if ignorePathsEnv == "" {
+        return nil
+    }
+    return strings.Split(ignorePathsEnv, ",")
+}
+
 
 func detectLanguage(dirName string) (string, string) {
     files, _ := ioutil.ReadDir(dirName)
@@ -65,26 +75,26 @@ func detectLanguage(dirName string) (string, string) {
     return "", ""
 }
 
-func countLinesOfCode(dirName, language string) int {
+func countLinesOfCode(dirName, language string, ignorePaths []string) int {
     var extension string
     switch language {
-    case "Ruby":
-        extension = ".rb"
-    case "TypeScript":
-        extension = ".ts"
-    case "Go":
-        extension = ".go"
-    case "Elixer":
-        extension = ".ex"
-    case "Rust":
-        extension = ".rs"
-    case "Python":
-        extension = ".py"
+		case "Ruby":
+			extension = ".rb"
+		case "TypeScript":
+		    extension = ".ts"
+		case "Go":
+		    extension = ".go"
+		case "Elixer":
+			extension = ".ex"
+		case "Rust":
+			extension = ".rs"
+		case "Python":
+			extension = ".py"
     }
 
     var loc int
     filepath.Walk(dirName, func(path string, info os.FileInfo, err error) error {
-        if strings.HasSuffix(path, extension) {
+        if strings.HasSuffix(path, extension) && !shouldIgnore(path, ignorePaths) {
             file, err := os.Open(path)
             if err != nil {
                 return err
@@ -101,4 +111,13 @@ func countLinesOfCode(dirName, language string) int {
     })
 
     return loc
+}
+
+func shouldIgnore(path string, ignorePaths []string) bool {
+    for _, ignorePath := range ignorePaths {
+        if strings.Contains(path, ignorePath) {
+            return true
+        }
+    }
+    return false
 }

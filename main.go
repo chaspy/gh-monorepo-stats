@@ -98,7 +98,7 @@ func countLinesOfCode(dirName, language string, ignorePaths []string) int {
         if strings.HasSuffix(path, extension) && !shouldIgnore(path, ignorePaths) {
             file, err := os.Open(path)
             if err != nil {
-                return err
+                return fmt.Errorf("failed to open file: %w", err)
             }
             defer file.Close()
 
@@ -106,7 +106,9 @@ func countLinesOfCode(dirName, language string, ignorePaths []string) int {
             for scanner.Scan() {
                 loc++
             }
-            return scanner.Err()
+			if err := scanner.Err(); err != nil {
+	            return fmt.Errorf("failed to scan file: %w", err)
+			}
         }
         return nil
     })

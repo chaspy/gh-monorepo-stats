@@ -62,7 +62,7 @@ func detectLanguage(dirName string) (string, string) {
         case "go.mod":
             return "Go", "go.mod"
         case "mix.exs":
-            return "Elixer", "mix.exs"
+            return "Elixir", "mix.exs"
         case "Cargo.toml":
             return "Rust", "Cargo.toml"
         case "requirements.txt", "setup.py", "poetry.lock", "Pipfile.lock":

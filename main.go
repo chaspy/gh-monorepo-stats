@@ -52,7 +52,11 @@ func getIgnorePaths() []string {
 
 
 func detectLanguage(dirName string) (string, string) {
-    files, _ := ioutil.ReadDir(dirName)
+	files, err := ioutil.ReadDir(dirName)
+	if err != nil {
+		return "", ""
+	}
+
     for _, f := range files {
         switch f.Name() {
         case "Gemfile":

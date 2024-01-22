@@ -1,0 +1,28 @@
+linters:
+  disable-all: true
+  enable:
+    # defailt
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    # custom
+    - gocyclo
+    - gochecknoglobals
+    - errorlint
+    - wrapcheck
+    - forbidigo
+
+linters-settings:
+  gocyclo:
+    min-complexity: 10
+
+  errorlint:
+    errorf: true
+
+  forbidigo:
+    forbid:
+      - ^(fmt\\.Print(|f|ln)|print|println)$
+      - log.Fatal

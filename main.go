@@ -27,7 +27,7 @@ func run() error {
     }
 
     for _, d := range dirs {
-        if d.IsDir() {
+        if (d.IsDir() && !strings.HasPrefix(d.Name(), ".")) {
             dirName := d.Name()
             language, packageFile := detectLanguage(dirName)
             if language != "" {

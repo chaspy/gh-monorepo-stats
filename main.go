@@ -94,7 +94,7 @@ func countLinesOfCode(dirName, language string, ignorePaths []string) int {
     }
 
     var loc int
-    filepath.Walk(dirName, func(path string, info os.FileInfo, err error) error {
+    err := filepath.Walk(dirName, func(path string, info os.FileInfo, err error) error {
         if strings.HasSuffix(path, extension) && !shouldIgnore(path, ignorePaths) {
             file, err := os.Open(path)
             if err != nil {
@@ -110,6 +110,10 @@ func countLinesOfCode(dirName, language string, ignorePaths []string) int {
         }
         return nil
     })
+
+	if err != nil {
+		return 0
+	}
 
     return loc
 }

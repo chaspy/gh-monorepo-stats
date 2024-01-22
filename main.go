@@ -58,10 +58,7 @@ func detectLanguage(dirName string) (string, string) {
         case "Gemfile":
             return "Ruby", "Gemfile"
         case "yarn.lock", "pnpm-lock.yaml":
-            if f.Name() == "pnpm-lock.yaml" {
-                return "TypeScript", "pnpm-lock.yaml"
-            }
-            return "TypeScript", "yarn.lock"
+            return "TypeScript", f.Name()
         case "go.mod":
             return "Go", "go.mod"
         case "mix.exs":

@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.3](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.2...v0.0.3) - 2024-01-22
+- ignore dot dir by @chaspy in https://github.com/chaspy/gh-monorepo-stats/pull/10
+
 ## [v0.0.2](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.1...v0.0.2) - 2024-01-22
 - Enable tagpr by @chaspy in https://github.com/chaspy/gh-monorepo-stats/pull/5
 - Add renovate.json by @chaspy in https://github.com/chaspy/gh-monorepo-stats/pull/6

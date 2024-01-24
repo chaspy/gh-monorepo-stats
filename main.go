@@ -93,7 +93,7 @@ func countLinesOfCode(dirName, language string, ignorePaths []string, ignoreDirs
 		extension = ".ts"
 	case "Go":
 		extension = ".go"
-	case "Elixer":
+	case "Elixir":
 		extension = ".ex"
 	case "Rust":
 		extension = ".rs"

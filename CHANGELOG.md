@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.4](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.3...v0.0.4) - 2024-01-24
+- Support ignore dirs by @chaspy in https://github.com/chaspy/gh-monorepo-stats/pull/12
+
 ## [v0.0.3](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.2...v0.0.3) - 2024-01-22
 - ignore dot dir by @chaspy in https://github.com/chaspy/gh-monorepo-stats/pull/10
 

@@ -34,3 +34,4 @@ frontend, yarn.lock, TypeScript, 10876
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `GH_REPO`     | The repository to query. Defaults to the current repository.                                                                           |
 | `IGNORE_PATH` | List of path for ignoring to output LOC. it should be comma separated like IGNORE_PATH="app1/generated/path.go,app2/generated.path.go" |
+| `IGNORE_DIRS` | List of directory for ignoring to output LOC. it should be comma separated like IGNORE_DIRS="app1/generated,app2/generated"            |

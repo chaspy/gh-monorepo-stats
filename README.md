@@ -32,7 +32,7 @@ frontend, yarn.lock, TypeScript, 10876
 
 You can ignore files by creating a `.gh-monorepo-stats-ignore` file in the root of the repository.
 
-```
+```bash
 # Specify directory to ignore
 # This line will be ignored
 app/__generated__ # This line also will be ignored

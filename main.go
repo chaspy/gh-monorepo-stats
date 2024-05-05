@@ -45,14 +45,14 @@ func run() error {
 	return nil
 }
 
-func getIgnoreString() (string, error) {
+func getIgnoreString() ([]string, error) {
 	const IGNORE_FILE = ".gh-monorepo-stats-ignore"
 	ignoredFiles, err := os.ReadFile(IGNORE_FILE)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return "", nil
+			return []string{""}, nil
 		}
-		return "", fmt.Errorf("Failed to open .gh-monorepo-stats-ignore file: %w", err)
+		return []string{""}, fmt.Errorf("Failed to open .gh-monorepo-stats-ignore file: %w", err)
 	}
 
 	lines := strings.Split(string(ignoredFiles), "\n")
@@ -68,23 +68,24 @@ func getIgnoreString() (string, error) {
 		}
 	}
 
-	return strings.Join(validLines, " "), nil
+	return validLines, nil
 }
 
 func getIgnoreDirs() ([]string, error) {
 	ignoreDirs, err := getIgnoreString()
+
 	if err != nil {
-		// If there's an error and no ignore string, fallback to environment variable
-		if ignoreDirs == "" {
-			ignoreDirsEnv := os.Getenv("IGNORE_DIRS")
-			if ignoreDirsEnv == "" {
-				return nil, nil // No environment variable set, return nil
-			}
-			return strings.Split(ignoreDirsEnv, ","), nil // Split and return environment variable
-		}
 		return nil, fmt.Errorf("Failed to read ignore dirs: %w", err) // Return error if ignore string read fails
+	} else if len(ignoreDirs) == 0 || (len(ignoreDirs) == 1 && ignoreDirs[0] == "") {
+		// If there's no ignore string, fallback to environment variable
+		ignoreDirsEnv := os.Getenv("IGNORE_DIRS")
+		if ignoreDirsEnv == "" {
+			return nil, nil // No environment variable set, return nil
+		}
+		return strings.Split(ignoreDirsEnv, ","), nil // Split and return environment variable
 	}
-	return strings.Split(ignoreDirs, " "), nil // Split and return ignoreDirs by spaces
+	// return ignore dirs from ignore file
+	return ignoreDirs, nil
 }
 
 func getIgnorePaths() []string {

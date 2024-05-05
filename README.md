@@ -28,6 +28,22 @@ backend2, go.mod, Go, 2189
 frontend, yarn.lock, TypeScript, 10876
 ```
 
+## Ignore File
+
+You can ignore files by creating a `.gh-monorepo-stats-ignore` file in the root of the repository.
+
+```bash
+# Specify directory to ignore
+# This line will be ignored
+app/__generated__ # This line also will be ignored
+app/tests/data/__generated__ # You can comment here
+
+# Blank line will be ignored
+frontend/tests/data/__generated__
+```
+
+If you set `IGNORE_DIRS` environment variables, it will be ignored.
+
 ## Environment Variables
 
 | Name          | Description                                                                                                                            |

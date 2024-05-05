@@ -30,7 +30,7 @@ frontend, yarn.lock, TypeScript, 10876
 
 ## Ignore File
 
-You can ignore files by creating `.gh-monorepo-stats-ignore` file in the root of the repository.
+You can ignore files by creating a `.gh-monorepo-stats-ignore` file in the root of the repository.
 
 ```
 # Specify directory to ignore

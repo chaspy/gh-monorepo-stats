@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.0.5](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.4...v0.0.5) - 2024-05-05
+## [v0.1.0](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.4...v0.1.0) - 2024-05-05
 - Allow ignore file by @chaspy in https://github.com/chaspy/gh-monorepo-stats/pull/18
 
 ## [v0.0.4](https://github.com/chaspy/gh-monorepo-stats/compare/v0.0.3...v0.0.4) - 2024-01-24

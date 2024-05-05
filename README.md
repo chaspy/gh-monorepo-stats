@@ -28,6 +28,12 @@ backend2, go.mod, Go, 2189
 frontend, yarn.lock, TypeScript, 10876
 ```
 
+## Ignore File
+
+You can ignore files by creating `.gh-monorepo-stats-ignore` file in the root of the repository.
+
+If you set `IGNORE_PATH` and `IGNORE_DIRS` environment variables, it will be ignored.
+
 ## Environment Variables
 
 | Name          | Description                                                                                                                            |
